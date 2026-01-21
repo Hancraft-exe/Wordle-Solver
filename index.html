@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wordle Solver Pro</title>
+
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    background: #111;
+    color: #eee;
+    padding: 20px;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  section {
+    margin-bottom: 20px;
+  }
+
+  .row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+input[type="text"] {
+    width: 50px;          /* tamaño fijo, igual alto */
+    aspect-ratio: 1 / 1;  /* asegura proporción 1:1 */
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: 2px solid #555;
+    border-radius: 4px;
+}
+
+.green input { background: #538d4e; color: white; }
+.yellow input { background: #b59f3b; color: white; }
+.gray input { background: #3a3a3c; color: white; }
+
+input {
+  width: 50px;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #555;
+  border-radius: 6px;
+}
+
+
+  .green input {
+    background: #538d4e;
+    color: white;
+    border: none;
+  }
+
+  .yellow input {
+    background: #b59f3b;
+    color: white;
+    border: none;
+  }
+
+  .gray input {
+    width: 200px;
+  }
+
+  #results {
+    max-height: 300px;
+    overflow-y: auto;
+    background: #222;
+    padding: 10px;
+  }
+
+  .word {
+    display: inline-block;
+    margin: 4px;
+    padding: 4px 6px;
+    background: #333;
+    border-radius: 4px;
+  }
+
+#resetBtn {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #aa0606;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #resetBtn:hover {
+    background-color: #666;
+  }
+
+#searchBtn {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #0066aa;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #searchBtn:hover {
+    background-color: #004477;
+  }
+
+.word {
+  cursor: pointer;        /* manito 👆 */
+  user-select: none;      /* evita seleccionar texto al click */
+}
+
+.word:hover {
+  background: #444;
+  text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Wordle Solver</h1>
+
+<section>
+  <button id="resetBtn">Reset</button>
+</section>
+
+<section>
+  <h3>Correct (Green)</h3>
+  <div class="row green" id="correct-row">
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+    <input maxlength="1" />
+  </div>
+</section>
+
+<section>
+  <h3>Misplaced (Yellow)</h3>
+
+  <div id="misplaced">
+    <!-- 5 filas -->
+    <div class="row yellow">
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+    </div>
+    <div class="row yellow">
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+    </div>
+    <div class="row yellow">
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+    </div>
+    <div class="row yellow">
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+    </div>
+    <div class="row yellow">
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+      <input maxlength="1" />
+    </div>
+  </div>
+</section>
+
+<section class="gray">
+  <h3>Incorrect (Gray)</h3>
+  <input id="incorrect" placeholder="Wrong letters" autocomplete="off" />
+</section>
+
+<section>
+  <button id="searchBtn">Search</button>
+</section>
+
+<section>
+  <h3>Results</h3>
+  <div id="results"></div>
+</section>
+
+<script src="main.js"></script>
+</body>
+</html>
